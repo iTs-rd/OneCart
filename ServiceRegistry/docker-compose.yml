@@ -1,0 +1,76 @@
+version: '3.3'
+
+services:
+
+  serviceregistry:
+    # image: itsrd/service:latest
+    container_name: service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8761:8761"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://serviceregistry:8761/actuator/health" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - onecart
+
+        # epay:
+        #   image: itsrd/epay:latest
+        #   container_name: epay-app
+        #   build:
+        #     context: .
+        #     dockerfile: Dockerfile
+        #   ports:
+      #     - "8081:8080"
+      #   restart: always
+
+    #   depends_on:
+    #     - db
+    #     - elasticsearch
+    #   environment:
+    #     ELASTIC_DB_HOST: elasticsearch
+    #     ELASTIC_DB_PORT: 9200      #port is of internal server not of which is open in docker (port no. is always 9200 in docker compose because we are calling it via its service name i.e. elasticsearch)
+    #     DB_HOST: db:3306          #(port no. is always 9200 in docker compose because we are calling it via its service name i.e. db)
+    #     SPRING_DATASOURCE_USERNAME: root
+    #     SPRING_DATASOURCE_PASSWORD: root
+    #   networks:
+    #     - epay
+
+
+
+  # redis:
+  #   image: redis
+  #   container_name: redis
+  #   ports:
+  #     - "6379:6379"
+  #   healthcheck:
+  #     test: [ "CMD", "redis-cli","ping" ]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+
+  # cloudgateway:
+  #   image: itsrd/gateway
+  #   container_name: gateway
+  #   ports:
+  #     - "9090:9090"
+  #   environment:
+  #     - CONFIG_SERVER_ADDRESS=http://configserver:9296
+  #   healthcheck:
+  #     test: [ "CMD", "curl", "-f", "http://cloudgateway:9090/actuator/health" ]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+  #   depends_on:
+  #     configserver:
+  #       condition: service_healthy
+  #     redis:
+  #       condition: service_healthy
+
+networks:
+  onecart:
+    driver: bridge

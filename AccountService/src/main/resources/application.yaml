@@ -1,0 +1,13 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost:3306}/accountdb
+    #    url: jdbc:mysql://${DB_HOST:localhost:3306}/accountdb
+    username: root
+    password: root
+  application:
+    name: ACCOUNT-SERVICE
+  config:
+    import: configserver:${CONFIG_SERVER_ADDRESS:http://localhost:9296}

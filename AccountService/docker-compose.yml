@@ -1,0 +1,74 @@
+version: '3.3'
+
+services:
+  #  db-account:
+  #    image: mysql:8.1.0
+  #    container_name: mysql2
+  #    environment:
+  #      - MYSQL_DATABASE=accountdb
+  #      - MYSQL_ROOT_PASSWORD=root
+  #    ports:
+  #      - "3307:3306"
+  #    networks:
+  #      - epay
+
+  serviceregistry:
+    image: itsrd/service
+    container_name: service
+    ports:
+      - "8761:8761"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://serviceregistry:8761/actuator/health" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - onecart
+  configserver:
+    image: itsrd/config
+    container_name: config
+    ports:
+      - "9296:9296"
+    environment:
+      - EUREKA_SERVER_ADDRESS=http://serviceregistry:8761/eureka
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://configserver:9296/actuator/health" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    depends_on:
+      serviceregistry:
+        condition: service_healthy
+
+  redis:
+    image: redis
+    container_name: redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: [ "CMD", "redis-cli","ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  cloudgateway:
+    image: itsrd/gateway
+    container_name: gateway
+    ports:
+      - "9090:9090"
+    environment:
+      - CONFIG_SERVER_ADDRESS=http://configserver:9296
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://cloudgateway:9090/actuator/health" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    depends_on:
+      configserver:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+networks:
+  onecart:
+    driver: bridge
