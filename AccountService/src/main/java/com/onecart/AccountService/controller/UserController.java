@@ -38,10 +38,11 @@ public class UserController {
         return new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK);
     }
 
-    @GetMapping("/test")
-    public ResponseEntity<String> getUserById() {
-        log.info("Test Test Test Test Test Test Test Test Test");
-        return new ResponseEntity<>("Test Test Test Test Test Test Test Test Test", HttpStatus.OK);
+    @GetMapping("/healthcheck")
+    public ResponseEntity<String> healthcheck() {
+        String message = "Account Service is healthy";
+        log.info(message);
+        return new ResponseEntity<>(message, HttpStatus.OK);
     }
 
 }

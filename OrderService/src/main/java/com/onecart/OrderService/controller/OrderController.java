@@ -38,10 +38,11 @@ public class OrderController {
         return new ResponseEntity<>(orderService.getAllOrderByUserId(id), HttpStatus.OK);
     }
 
-    @GetMapping("/test")
-    public ResponseEntity<String> getUserById() {
-        log.info("Test Test Test Test Test Test Test Test Test");
-        return new ResponseEntity<>("Test Test Test Test Test Test Test Test Test", HttpStatus.OK);
+    @GetMapping("/healthcheck")
+    public ResponseEntity<String> healthcheck() {
+        String message = "Order Service is healthy";
+        log.info(message);
+        return new ResponseEntity<>(message, HttpStatus.OK);
     }
 
 }

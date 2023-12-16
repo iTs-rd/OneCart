@@ -55,11 +55,11 @@ public class ProductController {
         return new ResponseEntity<>(productService.getProductDataFromIDs(getProductDataFromIDsRequest), HttpStatus.OK);
     }
 
-    @GetMapping("/test")
-    public ResponseEntity<String> getUserById() {
-        log.info("Test Test Test Test Test Test Test Test Test");
-        return new ResponseEntity<>("Test Test Test Test Test Test Test Test Test", HttpStatus.OK);
+    @GetMapping("/healthcheck")
+    public ResponseEntity<String> healthcheck() {
+        String message = "Product Service is healthy";
+        log.info(message);
+        return new ResponseEntity<>(message, HttpStatus.OK);
     }
-
 
 }
