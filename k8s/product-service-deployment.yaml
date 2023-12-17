@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: product-service-app
-        image: itsrd/product
+        image: itsrd/product-service
         imagePullPolicy: Always
         ports:
         - containerPort: 8084

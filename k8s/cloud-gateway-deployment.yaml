@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: cloud-gateway-app
-        image: itsrd/cloud
+        image: itsrd/cloud-gateway
         imagePullPolicy: Always
         ports:
         - containerPort: 9090

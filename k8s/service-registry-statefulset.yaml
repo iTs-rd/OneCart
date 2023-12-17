@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: eureka
-        image: itsrd/service
+        image: itsrd/service-registry
         imagePullPolicy: Always
         ports:
         - containerPort: 8761

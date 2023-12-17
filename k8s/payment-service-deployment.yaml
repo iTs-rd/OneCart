@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: payment-service-app
-        image: itsrd/payment
+        image: itsrd/payment-service
         imagePullPolicy: Always
         ports:
         - containerPort: 8083

@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: order-service-app
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: order-service-app
@@ -13,7 +14,7 @@ spec:
     spec:
       containers:
       - name: order-service-app
-        image: itsrd/order
+        image: itsrd/order-service
         imagePullPolicy: Always
         ports:
         - containerPort: 8082
