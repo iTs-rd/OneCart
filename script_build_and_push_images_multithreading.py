@@ -5,38 +5,38 @@ import os
 
 def AccountService():
     os.system("mvn -f .//AccountService clean install")
-    os.system("docker build -t itsrd/account-service:latest .//AccountService")
-    os.system("docker push itsrd/account-service:latest")
+    os.system("docker build -t itsrd/account-service:1.0 .//AccountService")
+    os.system("docker push itsrd/account-service:1.0")
  
 def CloudGateway():
     os.system("mvn -f .//CloudGateway clean install")
-    os.system("docker build -t itsrd/cloud-gateway:latest .//CloudGateway")
-    os.system("docker push itsrd/cloud-gateway:latest")
+    os.system("docker build -t itsrd/cloud-gateway:1.0 .//CloudGateway")
+    os.system("docker push itsrd/cloud-gateway:1.0")
  
 def ConfigServer():
     os.system("mvn -f .//ConfigServer clean install")
-    os.system("docker build -t itsrd/config-server:latest .//ConfigServer")
-    os.system("docker push itsrd/config-server:latest")
+    os.system("docker build -t itsrd/config-server:1.0 .//ConfigServer")
+    os.system("docker push itsrd/config-server:1.0")
  
 def OrderService():
     os.system("mvn -f .//OrderService clean install")
-    os.system("docker build -t itsrd/order-service:latest .//OrderService")
-    os.system("docker push itsrd/order-service:latest")
+    os.system("docker build -t itsrd/order-service:1.0 .//OrderService")
+    os.system("docker push itsrd/order-service:1.0")
 
 def PaymentService():
     os.system("mvn -f .//PaymentService clean install")
-    os.system("docker build -t itsrd/payment-service:latest .//PaymentService")
-    os.system("docker push itsrd/payment-service:latest")
+    os.system("docker build -t itsrd/payment-service:1.0 .//PaymentService")
+    os.system("docker push itsrd/payment-service:1.0")
  
 def ProductService():
     os.system("mvn -f .//ProductService clean install")
-    os.system("docker build -t itsrd/product-service:latest .//ProductService")
-    os.system("docker push itsrd/product-service:latest")
+    os.system("docker build -t itsrd/product-service:1.0 .//ProductService")
+    os.system("docker push itsrd/product-service:1.0")
  
 def ServiceRegistry():
     os.system("mvn -f .//ServiceRegistry clean install")
-    os.system("docker build -t itsrd/service-registry:latest .//ServiceRegistry")
-    os.system("docker push itsrd/service-registry:latest")
+    os.system("docker build -t itsrd/service-registry:1.0 .//ServiceRegistry")
+    os.system("docker push itsrd/service-registry:1.0")
 
 
 if __name__ =="__main__":

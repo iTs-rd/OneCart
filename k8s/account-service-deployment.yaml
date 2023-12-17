@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: account-service-app
-        image: itsrd/account-service
+        image: itsrd/account-service:1.0
         imagePullPolicy: Always
         ports:
         - containerPort: 8081
